@@ -1,0 +1,68 @@
+Project Charter: Aplicativo de Monitoramento de Doenças em Tempo Real
+
+
+Cliente: Organizações de Saúde Pública e Agências de Controle de Doenças, publico geral.
+
+Domínio de Negócio: Saúde pública e epidemiologia.
+
+Problema de Negócio: As organizações de saúde enfrentam desafios em monitorar a disseminação de doenças em tempo real, o que prejudica a capacidade de resposta rápida e eficiente. A falta de informações precisas e atualizadas dificulta a tomada de decisões para contenção e prevenção de surtos.
+
+
+Soluções de Data Science: O aplicativo visa fornecer um painel interativo em tempo real que mostra a incidência de diferentes doenças e suas respectivas taxas de transmissão em várias regiões geográficas.
+
+O que Vamos Fazer:
+
+    Desenvolver um aplicativo Streamlit que integra dados de múltiplas fontes (bases de dados públicas, APIs governamentais) para fornecer visualizações dinâmicas.
+    Implementar modelos de predição para identificar padrões emergentes e prever surtos potenciais.
+    Incluir funcionalidades para alertas em tempo real e relatórios automatizados.
+
+Consumo pelo Cliente: O aplicativo será acessado via navegador, permitindo que profissionais de saúde visualizem informações críticas para tomada de decisão. Relatórios automatizados e alertas serão enviados aos responsáveis por e-mail ou SMS.
+Personnel
+
+
+Metrics
+
+Objetivos Qualitativos: Melhorar a resposta a surtos de doenças, permitindo uma visualização mais rápida e precisa das áreas afetadas.
+
+Métricas Quantificáveis:
+
+    Reduzir o tempo de resposta para a identificação de surtos em 30%.
+    Aumentar a precisão da predição de surtos em 25%.
+
+
+Medida da Métrica: Comparação da performance antes e depois da implementação usando dados históricos e novos dados em tempo real.
+Plan
+
+    Fase 1: Coleta e Integração de Dados (2 semanas)
+        Integrar fontes de dados relevantes e configurar pipelines de dados.
+
+    Fase 2: Desenvolvimento do Aplicativo (4 semanas)
+        Construir o aplicativo Streamlit com funcionalidades de visualização e predição.
+
+    Fase 3: Testes e Validação (2 semanas)
+        Testar o aplicativo com dados reais e ajustar os modelos de predição.
+
+    Fase 4: Implementação e Treinamento (2 semanas)
+        Desdobramento do aplicativo para o cliente e treinamento da equipe.
+
+Architecture
+
+Dados:
+
+    Dados esperados incluem registros de incidência de doenças, taxas de transmissão e dados demográficos de fontes como sistemas de saúde on-premise, bancos de dados SQL e APIs públicas.
+
+Movimentação de Dados:
+
+    Uso de Azure Data Factory (ADF) para mover dados de on-prem para a nuvem, com amostragem suficiente para modelagem.
+
+Ferramentas e Recursos:
+
+    Streamlit para a interface do usuário.
+    Azure ML para modelagem e operacionalização de serviços web.
+    ASA (Azure Stream Analytics) para agregação de fluxos de dados.
+
+Consumo dos Resultados:
+
+    A API do serviço web será usada para integrar os resultados do modelo com os fluxos de trabalho do cliente.
+    Fluxo de dados em produção será automatizado para fornecer atualizações em tempo real.
+
