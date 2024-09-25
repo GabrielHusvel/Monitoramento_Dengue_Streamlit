@@ -82,7 +82,10 @@ with abas[0]:
             return [0, 255, 0, 160]  # Verde (risco baixo)
     
     df_filtrado['cor'] = df_filtrado['risco_dengue'].apply(definir_cor)
-    st.write('O mapa corresponde a opção de um mês')
+    st.write('''O mapa corresponde a opção de um mês                            
+             Vermelho (risco alto)
+             Amarelo (risco moderado)
+             Verde (risco baixo)''')
 
     # Mapa interativo com Pydeck
     layer = pdk.Layer(
