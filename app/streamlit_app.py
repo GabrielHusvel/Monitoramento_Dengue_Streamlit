@@ -291,7 +291,7 @@ with abas[2]:
     st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiYzQyOTI4M2ItZTQwMC00ODg4LWJiNTQtODc5MzljNWIzYzg3IiwidCI6IjlhNTU0YWQzLWI1MmItNDg2Mi1hMzZmLTg0ZDg5MWU1YzcwNSJ9&pageName=ReportSectionbd7616200acb303571fc", height=600)
 
 
-    st.write(f'Here you need uplooad the csv with data from 2010 to 2024. /nHas customizable graphics and an interactive map. /n Google Drive Data link: https://drive.google.com/drive/folders/19OGg_d3S9L6wc99I3FZxc5Mn9Ba-jXos?usp=drive_link /n DropBox Data Link: https://www.dropbox.com/scl/fo/wuwb1zpcxuvvlnyfrkcpf/AIBXL31_YW6QpjbWKyG-v2s?rlkey=8vzsj4lddvx5sh61ce8hl2df1&st=zvb71bzb&dl=0')
+    st.write('Here you need uplooad the csv with data from 2010 to 2024. /nHas customizable graphics and an interactive map. /n Google Drive Data link: https://drive.google.com/drive/folders/19OGg_d3S9L6wc99I3FZxc5Mn9Ba-jXos?usp=drive_link /n DropBox Data Link: https://www.dropbox.com/scl/fo/wuwb1zpcxuvvlnyfrkcpf/AIBXL31_YW6QpjbWKyG-v2s?rlkey=8vzsj4lddvx5sh61ce8hl2df1&st=zvb71bzb&dl=0')
 
     uploaded_file = st.file_uploader('Faça o upload do arquivo da região desejada.')
     if uploaded_file:
