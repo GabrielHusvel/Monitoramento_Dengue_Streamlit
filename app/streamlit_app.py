@@ -106,6 +106,7 @@ with abas[0]:
     r = pdk.Deck(
         layers=[layer], 
         initial_view_state=view_state,
+        
         tooltip={
             'html': '<b>Município:</b> {municipio}<br><b>Casos:</b> {casos}<br><b>Est. Casos:</b> {casos_est}<br><b>Disseminação:</b> {disseminação}<br><b>Temperatura:</b> {tempmed}°C<br><b>Umidade:</b> {umidmed}%',
             'style': {'color': 'white'}
@@ -255,16 +256,7 @@ with abas[0]:
     df_rank = df_filtrado[['municipio_estado', 'risco_dengue']].sort_values(by='risco_dengue', ascending=False)
     st.write("Ranking dos municípios mais afetados:", df_rank)    
 
-    # # Comparação com outros municípios do estado
-    # estado_usuario = df[df['municipio'] == municipio_usuario]['estado'].values[0]
-    # df_estado = df[df['estado'] == estado_usuario]
-    
-    # # Visualização e comparação
-    # st.write(f"Comparação do município {municipio_usuario} com outros municípios do estado {estado_usuario}")
-    
-    # # Comparar casos e temperaturas
-    # fig = px.bar(df_estado, x='municipio', y='casos', color='tempmed', title=f"Casos e Temperatura no Estado {estado_usuario}")
-    # st.plotly_chart(fig)
+
 
 # Aba 2: Informações e Sintomas
 with abas[1]:
@@ -291,7 +283,7 @@ with abas[2]:
     st.components.v1.iframe("https://app.powerbi.com/view?r=eyJrIjoiYzQyOTI4M2ItZTQwMC00ODg4LWJiNTQtODc5MzljNWIzYzg3IiwidCI6IjlhNTU0YWQzLWI1MmItNDg2Mi1hMzZmLTg0ZDg5MWU1YzcwNSJ9&pageName=ReportSectionbd7616200acb303571fc", height=600)
 
 
-    st.write('Here you need uplooad the csv with data from 2010 to 2024. /nHas customizable graphics and an interactive map. /n Google Drive Data link: https://drive.google.com/drive/folders/19OGg_d3S9L6wc99I3FZxc5Mn9Ba-jXos?usp=drive_link /n DropBox Data Link: https://www.dropbox.com/scl/fo/wuwb1zpcxuvvlnyfrkcpf/AIBXL31_YW6QpjbWKyG-v2s?rlkey=8vzsj4lddvx5sh61ce8hl2df1&st=zvb71bzb&dl=0')
+    st.write('Here you need uplooad the csv with data from 2010 to 2024. \nHas customizable graphics and an interactive map. \n Google Drive Data link: https://drive.google.com/drive/folders/19OGg_d3S9L6wc99I3FZxc5Mn9Ba-jXos?usp=drive_link \n DropBox Data Link: https://www.dropbox.com/scl/fo/wuwb1zpcxuvvlnyfrkcpf/AIBXL31_YW6QpjbWKyG-v2s?rlkey=8vzsj4lddvx5sh61ce8hl2df1&st=zvb71bzb&dl=0')
 
     uploaded_file = st.file_uploader('Faça o upload do arquivo da região desejada.')
     if uploaded_file:
