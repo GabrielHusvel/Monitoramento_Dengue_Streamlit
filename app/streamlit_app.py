@@ -22,7 +22,7 @@ def carregar_dataset():
     
     try:
         # Tente ler cada parte do dataset
-        df = pd.read_csv(f'Monitoramento-Dengue-Streamlit-2010-2024/data_sus/PySUS/infodengue/df_dengue_2023_2024.csv')
+        df = pd.read_csv(f'data_sus/df_dengue_2023_2024.csv')
     except FileNotFoundError:
         st.error(f"Arquivo não encontrado.")
     return df  # Retorna um DataFrame vazio se o arquivo não for encontrado
@@ -44,7 +44,7 @@ with abas[0]:
     df['data_week'] = pd.to_datetime(df['data_week'], errors='coerce')
 
     # Selecionar município do usuário
-    municipio_usuario = st.selectbox("Selecione seu município", sorted(df['municipio'].unique()))
+    municipio_usuario = st.selectbox("Selecione seu município", sorted(df['municipio'].astype(str).unique()))
     
     # Comparação com outros municípios do estado
     estado_usuario = df[df['municipio'] == municipio_usuario]['estado'].values[0]
@@ -294,26 +294,32 @@ with abas[2]:
     st.write(f'Here you need uplooad the csv with data from 2010 to 2024. /nHas customizable graphics and an interactive map. /n Google Drive Data link: https://drive.google.com/drive/folders/19OGg_d3S9L6wc99I3FZxc5Mn9Ba-jXos?usp=drive_link /n DropBox Data Link: https://www.dropbox.com/scl/fo/wuwb1zpcxuvvlnyfrkcpf/AIBXL31_YW6QpjbWKyG-v2s?rlkey=8vzsj4lddvx5sh61ce8hl2df1&st=zvb71bzb&dl=0')
 
     uploaded_file = st.file_uploader('Faça o upload do arquivo da região desejada.')
-    @st.cache_data
-    def load_data(uploaded_file):
-        df = pd.read_csv(uploaded_file)
-        return df
     if uploaded_file:
+        @st.cache_data
+        def load_data(uploaded_file):
+            df = pd.read_csv(uploaded_file)
+            return df
+        
         df = load_data(uploaded_file)       
         st.write('Dados carregados com sucesso!')
-        st.dataframe(df)
+
+        # Certifique-se de que a coluna 'estado' seja do tipo string e remova valores nulos
+        df['estado'] = df['estado'].astype(str)
+        df = df[df['estado'].notna()]
+
     else:
         st.write('Nenhum arquivo foi carregado.')
+
     
     # Multiselect para selecionar as colunas desajas
-    selected_columns = st.multiselect("Selecione as colunas.", df.columns.tolist(), default=df.columns.tolist())
+    selected_columns = st.multiselect("Selecione as colunas. :)", df.columns.tolist(), default=df.columns.tolist())
 
     # Multiselect para selecionar os estados, ordenados alfabeticamente
-    selected_estado = st.multiselect("Selecione os estados.", sorted(df['estado'].unique()))
+    selected_estado = st.multiselect(" Selecione os estados.", sorted(df['estado'].astype(str).unique()))
     df_filtrado = df[(df['estado'].isin(selected_estado))]
 
     # Multiselect para selecionar os municípios, ordenados alfabeticamente
-    selected_municipio = st.multiselect("Selecione os municípios.", sorted(df_filtrado['municipio'].unique()), default=sorted(df_filtrado['municipio'].unique()))
+    selected_municipio = st.multiselect("Selecione os municípios.", sorted(df_filtrado['municipio'].astype(str).unique()), default=sorted(df_filtrado['municipio'].astype(str).unique()))
     df_filtrado = df_filtrado[(df_filtrado['municipio'].isin(selected_municipio))]
     st.write('Dados filtrados:/n')
     st.write(len(df_filtrado), ' Registros')
@@ -378,7 +384,7 @@ with abas[2]:
         r = pdk.Deck(
             layers=[layer],
             initial_view_state=view_state,
-            tooltip={"text": "{municipio}/nCasos: {casos}/nEstimativa: {casos_est}/nTemp: {tempmed} °C/nUmidade: {umidmed} %"}
+            tooltip={"text": "{municipio} Casos: {casos} Estimativa: {casos_est} Temp: {tempmed} nUmidade: {umidmed} %"}
         )
 
         st.pydeck_chart(r)
