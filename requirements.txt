@@ -5,3 +5,9 @@ streamlit<1.37.99
 streamlit-aggrid<1.0.99
 matplotlib<3.9.99
 bs4<0.0.99
+seaborn<0.13.99
+selenium<4.25.99
+fastapi<0.115.
+pydantic<2.9.99
+uvicorn<0.32.99
+httpie<3.2.99
